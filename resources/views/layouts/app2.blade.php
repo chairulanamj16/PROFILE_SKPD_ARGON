@@ -31,6 +31,7 @@
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-bs5.min.css" rel="stylesheet">
     <style>
         #sidenav-main {
             width: 100%;
@@ -244,15 +245,31 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script src="{{ asset('assets/js/argon-dashboard.min.js?v=2.0.4') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/js/all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-bs5.min.js"></script>
     @livewireScripts
     @php
-        $scriptView = 'backend.v1.' . Route::currentRouteName() . '.script';
+        $scriptView = 'backend.v1.' . Str::before(Route::currentRouteName(), '.') . '.script';
     @endphp
     @stack('js')
-    @if (View::exists($scriptView))
+    @stack('scripts')
+    {{-- <script>
+        $('#post-artikel').summernote();
+    </script> --}}
+    {{-- @stack('scripts') --}}
+    {{-- @if (View::exists($scriptView))
         @include($scriptView)
-    @endif
-    @stack(Route::currentRouteName())
+    @endif --}}
+    {{-- @stack(Route::currentRouteName()) --}}
+    @include('backend.v1.post.script')
+    {{-- <script>
+        $(document).ready(function() {
+            $('#summernote').summernote({
+                height: 500,
+                placeholder: 'Tulis konten artikel di sini...'
+            });
+        });
+    </script> --}}
+
 </body>
 
 </html>
