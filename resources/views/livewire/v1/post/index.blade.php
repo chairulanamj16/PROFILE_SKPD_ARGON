@@ -1,6 +1,6 @@
 <div>
     <div class="table-responsive text-nowrap mb-3">
-        <a href="{{ route('post.create') }}" class="btn btn-primary mt-2 btn-xs">
+        <a href="{{ route('post.create', ['account' => $account]) }}" class="btn btn-primary mt-2 btn-xs">
             <i class="fas fa-plus"></i> Tambah
         </a>
 
@@ -24,11 +24,17 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $post->title }}</td>
-                        <td>
-                            <img src="{{ $post->thumb }}" alt="" width="100">
+                        <td class="text-center">
+                            <img src="{{ url('storage') . '/' . $post->thumb }}" alt="" height="50">
                         </td>
                         <td>{{ $post->excercept }}</td>
-                        <td>{{ $post->postCategory }}</td>
+                        <td>
+                            @foreach ($post->postCategories as $item)
+                                <span class="badge bg-primary">
+                                    {{ $item->name }}
+                                </span>
+                            @endforeach
+                        </td>
                         <td>
                             <div class="text-center">
                                 <div class="form-check form-switch">
@@ -40,11 +46,13 @@
                         <td>{{ $post->created_at }}</td>
                         <td class="text-center">
                             @can('delete_subdomain')
-                                <button class="btn btn-danger btn-xs m-0" data-bs-toggle="modal" data-bs-target="#modelIdDelete{{ $loop->iteration }}">
+                                <button class="btn btn-danger btn-xs m-0" data-bs-toggle="modal"
+                                    data-bs-target="#modelIdDelete{{ $loop->iteration }}">
                                     <i class="fas fa-trash fa-fw"></i>
                                 </button>
                                 <!-- Modal -->
-                                <div class="modal fade" id="modelIdDelete{{ $loop->iteration }}" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                                <div class="modal fade" id="modelIdDelete{{ $loop->iteration }}" tabindex="-1"
+                                    role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-body">

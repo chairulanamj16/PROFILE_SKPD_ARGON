@@ -35,18 +35,20 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('subdomain')->group(function () {
         Route::get('/', [SubdomainController::class, 'index'])->name('subdomain')->middleware('permission:view_subdomain');
     });
-    // Route::get('/post', PostController::class)->parameter('post', 'post:uuid');;
-    Route::prefix('post')->group(function () {
-        Route::get('/', [PostController::class, 'index'])->name('post.index')->middleware('permission:view_post');
-        Route::get('/create', [PostController::class, 'create'])->name('post.create')->middleware('permission:create_post');
+
+    Route::group(['domain' => '{account}.anam.local'], function () {
+        Route::prefix('post')->group(function () {
+            Route::get('/', [PostController::class, 'index'])->name('post.index')->middleware('permission:view_post');
+            Route::get('/create', [PostController::class, 'create'])->name('post.create')->middleware('permission:create_post');
+        });
+        Route::prefix('galeri')->group(function () {
+            Route::get('/', [GaleriController::class, 'index'])->name('galeri.index')->middleware('permission:view_galeri');
+        });
+        Route::prefix('slider')->group(function () {
+            Route::get('/', [SliderController::class, 'index'])->name('slider.index')->middleware('permission:view_slider');
+        });
     });
 
-    Route::prefix('galeri')->group(function () {
-        Route::get('/', [GaleriController::class, 'index'])->name('galeri.index')->middleware('permission:view_galeri');
-    });
-    Route::prefix('slider')->group(function () {
-        Route::get('/', [SliderController::class, 'index'])->name('slider.index')->middleware('permission:view_slider');
-    });
 
     Route::prefix('users')->middleware(['permission:view_users|create_users|edit_users|delete_users'])->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('users.index')->middleware('permission:view_users');

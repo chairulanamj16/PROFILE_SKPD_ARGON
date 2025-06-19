@@ -34,6 +34,7 @@ class Index extends Component
         $role->name = $this->name;
         $role->save();
 
+        $post->postCategories()->attach($request->post_category_id);
         $role->syncPermissions($permissions);
         // Set pesan flash session
         session()->flash('success', 'Berhasil menambahkan role baru.');
