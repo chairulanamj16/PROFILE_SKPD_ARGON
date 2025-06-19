@@ -10,7 +10,13 @@ class Index extends Component
     public $page_count = 10, $search = '', $sortField = 'id', $sortDirection = 'asc';
 
     public $editFieldRowId;
+    public $account;
 
+
+    public function mount($account)
+    {
+        $this->account = $account;
+    }
 
     public function render()
     {

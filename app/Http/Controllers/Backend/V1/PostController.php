@@ -16,12 +16,14 @@ class PostController extends Controller
         $this->path = 'backend.' . $this->versi . '.' . request()->segment(1);
     }
 
-    public function index(Request $request)
+    public function index(Request $request, $account)
     {
-        return view($this->path . '.index');
+        $data['account'] = $account;
+        return view($this->path . '.index', $data);
     }
-    public function create(Request $request)
+    public function create(Request $request, $account)
     {
-        return view($this->path . '.create');
+        $data['account'] = $account;
+        return view($this->path . '.create', $data);
     }
 }

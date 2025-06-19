@@ -7,6 +7,7 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Str;
 use App\Models\V1\Post;
+use App\Models\V1\PostCategory;
 use Livewire\Attributes\On;
 
 class Create extends Component
@@ -16,6 +17,8 @@ class Create extends Component
     public $thumbnail;
     public $title;
     public $artikel;
+    public $categories;
+    public $account;
 
     protected $rules = [
         'thumbnail' => 'required|image|max:2048',
@@ -23,13 +26,24 @@ class Create extends Component
         'artikel' => 'required|string',
     ];
 
+    public function mount($account)
+    {
+        $this->account = $account;
+    }
+
+    public function render()
+    {
+        $data['kategori'] = PostCategory::all();
+        return view('livewire.v1.post.create', $data);
+    }
+
     public function store()
     {
         $this->validate();
 
         $filename = $this->thumbnail->store('thumbnails', 'public');
 
-        Post::create([
+        $post = Post::create([
             'office_id' => 1,
             'uuid' => Str::uuid(),
             'title' => $this->title,
@@ -37,13 +51,9 @@ class Create extends Component
             'excercept' => Str::limit(strip_tags($this->artikel), 150),
             'thumb' => $filename,
         ]);
+        $post->postCategories()->attach($this->categories);
 
         $this->dispatch('reinitSummernote', $this->artikel);
         return redirect()->route('post.index');
-    }
-
-    public function render()
-    {
-        return view('livewire.v1.post.create');
     }
 }
