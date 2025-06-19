@@ -1,0 +1,8 @@
+1.⁠ ⁠Klik link source code berikut :https://drive.google.com/file/d/18jgDl7fGYrszFkUy8QAJqRO8ZxLmK0n0/view?usp=sharing
+
+
+php artisan optimize
+php artisan config:cache
+php artisan route:clear
+php artisan migrate:fresh --seed
+php artisan storage:link
