@@ -12,23 +12,9 @@
                     </th>
                     <th wire:click="sortBy('name')" style="cursor:pointer">
                         Nama
-                        @if ($sortField == 'name')
-                            @if ($sortDirection == 'asc')
-                                ↑
-                            @else
-                                ↓
-                            @endif
-                        @endif
                     </th>
                     <th wire:click="sortBy('subdomain')" style="cursor: pointer">
                         Subdomain
-                        @if ($sortField == 'subdomain')
-                            @if ($sortDirection == 'asc')
-                                ↑
-                            @else
-                                ↓
-                            @endif
-                        @endif
                     </th>
 
                     <th>Tautan</th>
@@ -40,20 +26,26 @@
                     <tr>
                         <td></td>
                         <td class="{{ $nama != '' ? 'bg-success' : '' }}">
-                            <input wire:model.live='nama' type="text" class="form-control form-control-table"
-                                @error('nama') is-invalid @enderror">
+                            <input wire:model.live='nama' type="text"
+                                class="form-control form-control-table
+                                @error('nama') is-invalid @enderror"
+                                placeholder="Tulis nama skpd di sini">
                             @error('nama')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </td>
                         <td class="{{ $subdomain != '' ? 'bg-success' : '' }}">
-                            <input wire:model.live='subdomain' type="text" class="form-control form-control-table"
-                                @error('subdomain') is-invalid @enderror">
+                            <input wire:model.live='subdomain' type="text"
+                                class="form-control form-control-table
+                                @error('subdomain') is-invalid @enderror"
+                                placeholder="tulis subdomain di sini">
                             @error('subdomain')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </td>
-                        <td></td>
+                        <td>
+                            https://{{ $subdomain . '.profile.' . env('APP_URL') }}
+                        </td>
                         <td class="text-center">
                             <button wire:click="store" class="btn btn-primary btn-xs">
                                 <i class="fas fa-save fa-fw"></i>
@@ -77,6 +69,8 @@
                                         {{ $subdomain->name }}
                                     </span>
                                 @endif
+                            @else
+                                {{ $subdomain->name }}
                             @endcan
                         </td>
                         <td>
@@ -92,6 +86,8 @@
                                         {{ $subdomain->subdomain }}
                                     </span>
                                 @endif
+                            @else
+                                {{ $subdomain->subdomain }}
                             @endcan
 
                         </td>
