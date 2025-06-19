@@ -118,16 +118,36 @@
             border-radius: 10px;
         }
 
-        .parent-sidebar .nav-link:hover,
+
+
+        /* .parent-sidebar .nav-link:hover,
         .nav-item .nav-link:hover {
             background-color: rgba(105, 108, 255, 0.16) !important;
+        } */
+        .parent-sidebar .nav-link:hover,
+        .nav-item .nav-link:hover {
+            background-color: var(--bs-secondary) !important;
+            border-radius: .5rem;
+        }
+
+        /* .nav-link:hover .nav-link-text {
+            background-color: var(--bs-secondary) !important;
+        } */
+
+        .nav-link:hover .icon i {
+            background-color: var(--bs-secondary) !important;
         }
 
 
 
+
         .bg-primary {
-            /* background-color: #333232 !important; */
+            background-color: #393939 !important;
             /* background-color: rgba(105, 108, 255, 0.16) !important; */
+        }
+
+        .bg-secondary {
+            background-color: #9fa5af !important;
         }
 
         .bg-menu {
@@ -145,9 +165,10 @@
             color: #696cff !important;
         }
 
-        /* .btn-primary {
+        .btn-primary {
             background-color: #333232 !important;
-        } */
+        }
+
         .menu-item {}
 
         .ckeditor-content p {
@@ -193,7 +214,7 @@
 </head>
 
 <body class="g-sidenav-show ">
-    <div class="min-height-300 position-absolute w-100"></div>
+    <div class="min-height-300 position-absolute w-100 bg-primary"></div>
     @include('component.sidebar')
     <main class="main-content position-relative border-radius-lg">
         @include('component.navbar2')
