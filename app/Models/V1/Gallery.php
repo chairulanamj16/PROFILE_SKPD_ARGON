@@ -15,4 +15,11 @@ class Gallery extends Model
     {
         return $this->belongsTo(Office::class);
     }
+
+    public function scopeSearch($query, $term)
+    {
+        return $query->where(function ($q) use ($term) {
+            $q->where('image', 'like', '%' . $term . '%');
+        });
+    }
 }

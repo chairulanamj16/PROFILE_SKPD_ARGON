@@ -15,4 +15,11 @@ class Slider extends Model
     {
         return $this->belongsTo(Office::class);
     }
+
+    public function scopeSearch($query, $search)
+    {
+        return $query->where(function ($q) use ($search) {
+            $q->where('image', 'like', '%' . $search . '%');
+        });
+    }
 }

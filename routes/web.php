@@ -7,8 +7,11 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\backend\v1\GaleriController;
 use App\Http\Controllers\Backend\V1\PostController;
+use App\Http\Controllers\backend\v1\SliderController;
 use App\Http\Controllers\Backend\V1\SubdomainController;
+use App\Models\V1\Slider;
 
 // Route untuk autentikasi
 Route::middleware('guest')->group(function () {
@@ -37,6 +40,14 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/', [PostController::class, 'index'])->name('post.index')->middleware('permission:view_post');
         Route::get('/create', [PostController::class, 'create'])->name('post.create')->middleware('permission:create_post');
     });
+
+    Route::prefix('galeri')->group(function () {
+        Route::get('/', [GaleriController::class, 'index'])->name('galeri.index')->middleware('permission:view_galeri');
+    });
+    Route::prefix('slider')->group(function () {
+        Route::get('/', [SliderController::class, 'index'])->name('slider.index')->middleware('permission:view_slider');
+    });
+
     Route::prefix('users')->middleware(['permission:view_users|create_users|edit_users|delete_users'])->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('users.index')->middleware('permission:view_users');
         Route::post('/gridview', [UserController::class, 'gridview'])->name('users.gridview')->middleware('permission:view_users|edit_users|delete_users');

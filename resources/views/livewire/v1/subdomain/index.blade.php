@@ -1,9 +1,7 @@
 <div>
     <div class="table-responsive text-nowrap mt-2">
 
-        <x-filter-data>
-
-        </x-filter-data>
+        <x-filter-data />
         <table class="table align-items-center table-bordered">
             <thead class="text-sm bg-dark text-white">
                 <tr class="text-nowrap">
@@ -26,19 +24,17 @@
                     <tr>
                         <td></td>
                         <td class="{{ $nama != '' ? 'bg-success' : '' }}">
-                            <input wire:model.live='nama' type="text"
-                                class="form-control form-control-table
-                                @error('nama') is-invalid @enderror"
-                                placeholder="Tulis nama skpd di sini">
+
+                            <input wire:model.live='nama' type="text" class="form-control form-control-table" @error('nama') is-invalid @enderror">
+
                             @error('nama')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </td>
                         <td class="{{ $subdomain != '' ? 'bg-success' : '' }}">
-                            <input wire:model.live='subdomain' type="text"
-                                class="form-control form-control-table
-                                @error('subdomain') is-invalid @enderror"
-                                placeholder="tulis subdomain di sini">
+
+                            <input wire:model.live='subdomain' type="text" class="form-control form-control-table" @error('subdomain') is-invalid @enderror">
+
                             @error('subdomain')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -57,12 +53,12 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>
-                            @can('update_subdomain')
+                            @can('edit_subdomain')
                                 @if ($editFieldRowId == $subdomain->id . '-name')
                                     <div class="input-group">
                                         <input wire:blur="ubah('{{ $subdomain->id }}', 'name', $event.target.value)"
-                                            wire:keydown.enter="ubah('{{ $subdomain->id }}', 'name', $event.target.value)"
-                                            class="form-control form-control-table" value="{{ $subdomain->name }}" />
+                                            wire:keydown.enter="ubah('{{ $subdomain->id }}', 'name', $event.target.value)" class="form-control form-control-table"
+                                            value="{{ $subdomain->name }}" />
                                     </div>
                                 @else
                                     <span wire:click="editRow('{{ $subdomain->id . '-name' }}')">
@@ -74,12 +70,12 @@
                             @endcan
                         </td>
                         <td>
-                            @can('update_subdomain')
+                            @can('edit_subdomain')
                                 @if ($editFieldRowId == $subdomain->id . '-subdomain')
                                     <div class="input-group">
                                         <input wire:blur="ubah('{{ $subdomain->id }}', 'subdomain', $event.target.value)"
-                                            wire:keydown.enter="ubah('{{ $subdomain->id }}', 'subdomain', $event.target.value)"
-                                            class="form-control form-control-table" value="{{ $subdomain->subdomain }}" />
+                                            wire:keydown.enter="ubah('{{ $subdomain->id }}', 'subdomain', $event.target.value)" class="form-control form-control-table"
+                                            value="{{ $subdomain->subdomain }}" />
                                     </div>
                                 @else
                                     <span wire:click="editRow('{{ $subdomain->id . '-subdomain' }}')">
@@ -97,13 +93,11 @@
                         </td>
                         <td class="text-center">
                             @can('delete_subdomain')
-                                <button class="btn btn-danger btn-xs m-0" data-bs-toggle="modal"
-                                    data-bs-target="#modelIdDelete{{ $loop->iteration }}">
+                                <button class="btn btn-danger btn-xs m-0" data-bs-toggle="modal" data-bs-target="#modelIdDelete{{ $loop->iteration }}">
                                     <i class="fas fa-trash fa-fw"></i>
                                 </button>
                                 <!-- Modal -->
-                                <div class="modal fade" id="modelIdDelete{{ $loop->iteration }}" tabindex="-1"
-                                    role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                                <div class="modal fade" id="modelIdDelete{{ $loop->iteration }}" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-body">
