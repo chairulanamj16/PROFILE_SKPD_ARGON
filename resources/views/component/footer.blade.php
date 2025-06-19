@@ -8,7 +8,9 @@
                         document.write(new Date().getFullYear())
                     </script>,
                     made with <i class="fa fa-heart"></i> by
-                    <a href="https://ikbnusantara.com" class="font-weight-bold" target="_blank">IKBN</a>.
+                    <a href="https://ikbnusantara.com" class="font-weight-bold" target="_blank">
+                        Dinas Komunikasi dan Informatika
+                    </a>.
                 </div>
             </div>
             <div class="col-lg-6">

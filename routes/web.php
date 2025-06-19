@@ -34,7 +34,8 @@ Route::middleware(['auth'])->group(function () {
     });
     // Route::get('/post', PostController::class)->parameter('post', 'post:uuid');;
     Route::prefix('post')->group(function () {
-        Route::get('/', [PostController::class, 'index'])->name('post')->middleware('permission:view_post');
+        Route::get('/', [PostController::class, 'index'])->name('post.index')->middleware('permission:view_post');
+        Route::get('/create', [PostController::class, 'create'])->name('post.create')->middleware('permission:create_post');
     });
     Route::prefix('users')->middleware(['permission:view_users|create_users|edit_users|delete_users'])->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('users.index')->middleware('permission:view_users');
