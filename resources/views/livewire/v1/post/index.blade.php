@@ -3,6 +3,7 @@
         <a href="{{ route('post.create') }}" class="btn btn-primary mt-2 btn-xs">
             <i class="fas fa-plus"></i> Tambah
         </a>
+
         <x-filter-data />
         <table class="table align-items-center table-bordered">
             <thead class="text-sm bg-dark text-white">

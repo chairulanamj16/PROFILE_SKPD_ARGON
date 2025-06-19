@@ -11,8 +11,8 @@
     }
 @endphp
 
-<aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4" id="sidenav-main"
-    style="overflow-y: auto; overflow-x: hidden;">
+<aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4"
+    id="sidenav-main" style="overflow-y: auto; overflow-x: hidden;">
     <div class="sidenav-header">
         {{-- <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i> --}}
         {{-- <a class="navbar-brand m-0" href="{{ url('/') }}"> --}}
@@ -21,9 +21,11 @@
 
         <a class="navbar-brand m-0" href="{{ url('/') }}">
             <span class="app-brand-logo demo">
-                <img src={{ asset('assets/img/tapin.svg') }} alt="Logo" width="55" height="65">
+                <img src={{ asset('assets/img/tapin.svg') }} alt="Logo" width="30" height="65">
             </span>
-            <span class="app-brand-text demo menu-text fw-bolder ms-2">TAPIN</span>
+            <span class="app-brand-text demo menu-text fw-bolder ms-2">
+                PROFIL SKPD
+            </span>
         </a>
     </div>
     <hr class="horizontal dark mt-3">
