@@ -1,6 +1,11 @@
 <div>
     <div class="table-responsive text-nowrap mt-2">
-        <a href="{{ route('post.create') }}" class="btn btn-primary m-0 btn-xs"></a>
+        <a href="{{ route('post.create') }}" class="btn btn-primary m-0 btn-xs">
+            <i class="fas fa-plus fa-fw"></i>
+            Postingan
+        </a>
+        <br>
+        <br>
         <x-filter-data />
         <table class="table align-items-center table-bordered">
             <thead class="text-sm bg-dark text-white">
