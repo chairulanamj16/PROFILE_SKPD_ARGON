@@ -1,35 +1,15 @@
 <div>
     <div class="table-responsive text-nowrap mt-2">
 
-        <x-filter-data />
+        <x-filter-data>
+
+        </x-filter-data>
         <table class="table align-items-center table-bordered">
             <thead class="text-sm bg-dark text-white">
                 <tr class="text-nowrap">
-                    <th>
-                        #
-                    </th>
-                    <th wire:click="sortBy('name')" style="cursor:pointer">
-                        Nama
-                        @if ($sortField == 'name')
-                            @if ($sortDirection == 'asc')
-                                ↑
-                            @else
-                                ↓
-                            @endif
-                        @endif
-                    </th>
-                    <th wire:click="sortBy('subdomain')" style="cursor: pointer">
-                        Subdomain
-                        @if ($sortField == 'subdomain')
-                            @if ($sortDirection == 'asc')
-                                ↑
-                            @else
-                                ↓
-                            @endif
-                        @endif
-                    </th>
-
-                    <th>Tautan</th>
+                    <th>#</th>
+                    <th>Gambar</th>
+                    <th>Status</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -37,18 +17,6 @@
                 @can('create_subdomain')
                     <tr>
                         <td></td>
-                        <td class="{{ $nama != '' ? 'bg-success' : '' }}">
-                            <input wire:model.live='nama' type="text" class="form-control form-control-table" @error('nama') is-invalid @enderror">
-                            @error('nama')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </td>
-                        <td class="{{ $subdomain != '' ? 'bg-success' : '' }}">
-                            <input wire:model.live='subdomain' type="text" class="form-control form-control-table" @error('subdomain') is-invalid @enderror">
-                            @error('subdomain')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </td>
                         <td></td>
                         <td class="text-center">
                             <button wire:click="store" class="btn btn-primary btn-xs">
@@ -57,7 +25,23 @@
                         </td>
                     </tr>
                 @endcan
-                @foreach ($subdomains as $subdomain)
+
+                @foreach ($sliders as $slider)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>
+                            <img src="{{ $slider->image }}" alt="" width="100">
+                        </td>
+                        <td>
+                            <div class="text-center">
+                                <div class="form-check form-switch">
+                                    <input type="checkbox" class="form-check-input" value="0" checked="">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+                {{-- @foreach ($subdomains as $subdomain)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>
@@ -121,12 +105,11 @@
                             @endcan
                         </td>
                     </tr>
-                @endforeach
+                @endforeach --}}
             </tbody>
 
         </table>
 
     </div>
-    {{-- <x-filter-bottom :data="$subdomain" /> --}}
-    <x-pagination :data="$subdomains" />
+    {{-- <x-pagination :data="$subdomains" /> --}}
 </div>

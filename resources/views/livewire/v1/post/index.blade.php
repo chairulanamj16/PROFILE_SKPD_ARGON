@@ -1,16 +1,14 @@
 <div>
-    <div class="table-responsive text-nowrap mt-2">
-        <a href="{{ route('post.create') }}" class="btn btn-primary m-0 btn-xs"></a>
+    <div class="table-responsive text-nowrap mb-3">
+        <a href="{{ route('post.create') }}" class="btn btn-primary mt-2 btn-xs">
+            <i class="fas fa-plus"></i> Tambah
+        </a>
         <x-filter-data />
         <table class="table align-items-center table-bordered">
             <thead class="text-sm bg-dark text-white">
                 <tr class="text-nowrap">
-                    <th>
-                        #
-                    </th>
-                    <th>
-                        Judul
-                    </th>
+                    <th>#</th>
+                    <th>Judul</th>
                     <th>Thumbnail</th>
                     <th>Body</th>
                     <th>Kategori</th>
@@ -28,38 +26,24 @@
                         <td>
                             <img src="{{ $post->thumb }}" alt="" width="100">
                         </td>
-                        <td>
-                            {{ $post->excercept }}
-                        </td>
-                        <td>
-                            {{ $post->postCategory }}
-                        </td>
+                        <td>{{ $post->excercept }}</td>
+                        <td>{{ $post->postCategory }}</td>
                         <td>
                             <div class="text-center">
                                 <div class="form-check form-switch">
-                                    <input type="checkbox"
-                                        wire:blur="ubah('9a5ef7fa-b96c-4923-9247-fc84ca0e6037', 'show_disposisi_jabatan', $event.target.value)"
-                                        wire:change="ubah('9a5ef7fa-b96c-4923-9247-fc84ca0e6037', 'show_disposisi_jabatan', $event.target.value)"
-                                        class="form-check-input" value="0" checked="">
+                                    <input type="checkbox" class="form-check-input" value="0" checked="">
                                 </div>
                             </div>
-                            {{-- {{ $post->show_tapinkab }} --}}
                         </td>
-                        <td>
-                            {{ $post->office->subdomain }}
-                        </td>
-                        <td>
-                            {{ $post->created_at }}
-                        </td>
+                        <td>{{ $post->office->subdomain }}</td>
+                        <td>{{ $post->created_at }}</td>
                         <td class="text-center">
                             @can('delete_subdomain')
-                                <button class="btn btn-danger btn-xs m-0" data-bs-toggle="modal"
-                                    data-bs-target="#modelIdDelete{{ $loop->iteration }}">
+                                <button class="btn btn-danger btn-xs m-0" data-bs-toggle="modal" data-bs-target="#modelIdDelete{{ $loop->iteration }}">
                                     <i class="fas fa-trash fa-fw"></i>
                                 </button>
                                 <!-- Modal -->
-                                <div class="modal fade" id="modelIdDelete{{ $loop->iteration }}" tabindex="-1"
-                                    role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                                <div class="modal fade" id="modelIdDelete{{ $loop->iteration }}" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-body">
@@ -84,7 +68,7 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>
-                            @can('update_subdomain')
+                            @can('edit_subdomain')
                                 @if ($editFieldRowId == $subdomain->id . '-name')
                                     <div class="input-group">
                                         <input wire:blur="ubah('{{ $subdomain->id }}', 'name', $event.target.value)"
@@ -99,7 +83,7 @@
                             @endcan
                         </td>
                         <td>
-                            @can('update_subdomain')
+                            @can('edit_subdomain')
                                 @if ($editFieldRowId == $subdomain->id . '-subdomain')
                                     <div class="input-group">
                                         <input wire:blur="ubah('{{ $subdomain->id }}', 'subdomain', $event.target.value)"
