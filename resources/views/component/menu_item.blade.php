@@ -9,14 +9,14 @@
 @endphp
 
 <li class="nav-item {{ $additional_class }}">
-    <a class="nav-link {{ $isActive ? 'active' : '' }} {{ $sidebar_menu->parent_id == null ? ' parent-sidebar' : '' }}"
+    <a class="nav-link {{ $isActive ? 'active bg-secondary' : '' }} {{ $sidebar_menu->parent_id == null ? 'parent-sidebar bg-primary m-2' : '' }}"
         href="{{ $hasChildren ? '#' . $collapseId : url($sidebar_menu->subdomain) }}" {{-- @if ($hasChildren) data-bs-toggle="collapse" role="button" aria-expanded="{{ $isActive ? 'true' : 'false' }}" aria-controls="{{ $collapseId }}" @endif> --}}
         @if ($hasChildren) data-bs-toggle="collapse" role="button" aria-expanded="{{ $isChildActive ? 'true' : 'false' }}" aria-controls="{{ $collapseId }}" @endif>
 
         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class=" fas {{ $sidebar_menu->icon }} {{ $sidebar_menu->parent_id == null ? 'text-primary' : 'text-primary' }} text-sm opacity-10 fa-fw"></i>
+            <i class=" fas {{ $sidebar_menu->icon }} {{ $sidebar_menu->parent_id == null ? 'text-white' : 'text-primary' }} text-sm opacity-10 fa-fw"></i>
         </div>
-        <span class="nav-link-text ms-1">{!! $sidebar_menu->name !!}</span>
+        <span class="nav-link-text ms-1 {{ $sidebar_menu->parent_id == null ? 'text-white' : 'text-dark' }}">{!! $sidebar_menu->name !!}</span>
 
         {{-- @if ($hasChildren)
             <i class="fas fa-chevron-down ms-auto text-xs"></i>
