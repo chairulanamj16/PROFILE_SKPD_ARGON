@@ -4,12 +4,11 @@
            <a href="index.html" class="logo d-flex align-items-center">
                <!-- Uncomment the line below if you also wish to use an image logo -->
                @if ($office->logo)
-                   <img src="{{ url('storage') . '/' . $office->logo }}" class="img-fluid" width="100" height="100"
-                       alt="{{ $office->subdomain }}">
+                   <img src="{{ url('storage') . '/' . $office->logo }}" class="img-fluid" alt="{{ $office->subdomain }}">
                @else
-                   <img src="{{ url('') }}/assets/logo.png" alt="Kabupaten Tapin">
+                   <img src="{{ url('') }}/assets/logo.png" alt="Kabupaten Tapin" class="img-fluid">
                @endif
-               <h1 class="sitename text-uppercase">
+               <h1 class="sitename text-uppercase" style="font-size: 16px;">
                    {{ $office->subdomain }}
                </h1>
            </a>
