@@ -8,26 +8,27 @@
         <table class="table align-items-center table-bordered">
             <thead class="text-sm bg-dark text-white">
                 <tr class="text-nowrap">
-                    <th>#</th>
-                    <th>Judul</th>
+                    <th class="text-center">#</th>
                     <th>Thumbnail</th>
-                    <th>Body</th>
+                    <th>Judul</th>
                     <th>Kategori</th>
                     <th>Verifikasi Tapinkab</th>
-                    <th>Instansi</th>
-                    <th>Tanggal Publis</th>
+                    <th class="text-center">Instansi</th>
+                    <th class="text-center">Tanggal Publis</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($posts as $post)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $post->title }}</td>
+                        <td class="text-center">{{ $loop->iteration }}</td>
                         <td class="text-center">
-                            <img src="{{ url('storage') . '/' . $post->thumb }}" alt="" height="50">
+                            <img src="{{ url('storage') . '/' . $post->thumb }}" alt="" height="50"
+                                class="rounded">
                         </td>
-                        <td>{{ $post->excercept }}</td>
+                        <td style="width: 10px; word-break: break-word;">
+                            {{ $post->title }}
+                        </td>
                         <td>
                             @foreach ($post->postCategories as $item)
                                 <span class="badge bg-primary">
@@ -36,20 +37,24 @@
                             @endforeach
                         </td>
                         <td>
-                            <div class="text-center">
-                                <div class="form-check form-switch">
-                                    <input type="checkbox" class="form-check-input" value="0" checked="">
-                                </div>
+                            <div class="form-check form-switch">
+                                <input type="checkbox" class="form-check-input" value="0" checked="">
                             </div>
                         </td>
-                        <td>{{ $post->office->subdomain }}</td>
-                        <td>{{ $post->created_at }}</td>
+                        <td class="text-center text-uppercase">{{ $post->office->subdomain }}</td>
+                        <td class="text-center">{{ dateFormat($post->created_at) }}</td>
                         <td class="text-center">
-                            @can('delete_subdomain')
+                            <div class="btn-group">
+                                <a href="{{ route('post.edit', ['account' => $account, 'post' => $post->uuid]) }}"
+                                    class="btn btn-primary btn-xs m-0">
+                                    <i class="fas fa-edit fa-fw"></i>
+                                </a>
                                 <button class="btn btn-danger btn-xs m-0" data-bs-toggle="modal"
                                     data-bs-target="#modelIdDelete{{ $loop->iteration }}">
                                     <i class="fas fa-trash fa-fw"></i>
                                 </button>
+                            </div>
+                            @can('delete_subdomain')
                                 <!-- Modal -->
                                 <div class="modal fade" id="modelIdDelete{{ $loop->iteration }}" tabindex="-1"
                                     role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">

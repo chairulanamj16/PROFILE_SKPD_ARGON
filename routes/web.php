@@ -46,6 +46,7 @@ Route::middleware(['auth'])->group(function () {
         Route::prefix('post')->group(function () {
             Route::get('/', [PostController::class, 'index'])->name('post.index')->middleware('permission:view_post');
             Route::get('/create', [PostController::class, 'create'])->name('post.create')->middleware('permission:create_post');
+            Route::get('/{post:uuid}/edit', [PostController::class, 'edit'])->name('post.edit')->middleware('permission:edit_post');
         });
         Route::prefix('galeri')->group(function () {
             Route::get('/', [GaleriController::class, 'index'])->name('galeri.index')->middleware('permission:view_galeri');
