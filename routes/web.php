@@ -8,6 +8,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\backend\v1\GaleriController;
+use App\Http\Controllers\Backend\V1\PengaturanController;
 use App\Http\Controllers\Backend\V1\PostController;
 use App\Http\Controllers\backend\v1\PpidController;
 use App\Http\Controllers\backend\v1\PublikasiController;
@@ -60,6 +61,9 @@ Route::middleware(['auth'])->group(function () {
         });
         Route::prefix('ppid')->group(function () {
             Route::get('/', [PpidController::class, 'index'])->name('ppid.index')->middleware('permission:view_ppid');
+        });
+        Route::prefix('pengaturan')->group(function () {
+            Route::get('/', [PengaturanController::class, 'index'])->name('pengaturan.index')->middleware('permission:view_pengaturan');
         });
     });
 
