@@ -3,6 +3,7 @@
 namespace App\Livewire\V1\Post;
 
 use App\Models\V1\Post;
+use Illuminate\Support\Facades\File;
 use Livewire\Component;
 
 class Index extends Component
@@ -41,5 +42,12 @@ class Index extends Component
             );
         }
         $this->editFieldRowId = null;
+    }
+
+    public function hapus($uuid)
+    {
+        $post = Post::where('uuid', $uuid)->first();
+        File::delete('storage/' . $post->thumb);
+        $post->delete();
     }
 }

@@ -54,6 +54,6 @@ class Create extends Component
         $post->postCategories()->attach($this->categories);
 
         $this->dispatch('reinitSummernote', $this->artikel);
-        return redirect()->route('post.index');
+        return redirect()->route('post.index', ['account' => $this->account]);
     }
 }

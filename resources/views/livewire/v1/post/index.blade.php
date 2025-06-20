@@ -56,20 +56,25 @@
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-body">
-                                                Apakah anda yakin ingin menghapus data ini ?
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                                    Tutup
-                                                </button>
-                                                <button type="button" class="btn btn-primary">
-                                                    Hapus Data
-                                                </button>
+                                                <span>
+                                                    Apakah anda yakin ingin menghapus data ini ?
+                                                </span>
+                                                <br>
+                                                <br>
+                                                <div class="btn-group">
+                                                    <button type="button" class="btn btn-xs m-0 btn-secondary"
+                                                        data-bs-dismiss="modal">
+                                                        Tutup
+                                                    </button>
+                                                    <button type="button" wire:click='hapus("{{ $post->uuid }}")'
+                                                        class="btn btn-xs m-0 btn-primary" data-bs-dismiss="modal">
+                                                        Hapus Data
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            @endcan
+                                @endcan
                         </td>
                 @endforeach
 

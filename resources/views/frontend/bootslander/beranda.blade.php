@@ -3,13 +3,23 @@
 @section('content')
     <!-- Hero Section -->
     <section id="hero" class="hero section dark-background">
-        <img src="assets/img/hero-bg-2.jpg" alt="" class="hero-bg">
+        <img src="{{ url('templates/bootslander') }}/img/hero-bg-2.jpg" alt="" class="hero-bg">
 
         <div class="container">
             <div class="row gy-4 justify-content-between">
                 <div class="col-lg-4 order-lg-last hero-img" data-aos="zoom-out" data-aos-delay="100">
-                    <img src="{{ url('templates/bootslander') }}/img/hero-img.png" class="img-fluid animated"
-                        alt="">
+                    <div class="animated">
+                        <img src="{{ url('storage') . '/' . $office->leader_image }}" class="img-fluid " alt="">
+                        <div class="bg-white  text-center px-3 py-3"
+                            style="position: absolute;left:0;right:0;bottom:0;border-radius:50px;">
+                            <h5 class="text-dark m-0">
+                                {{ $office->leader_name }}
+                            </h5>
+                            <h6 class="text-dark">
+                                {{ $office->leader_position }}
+                            </h6>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="col-lg-6  d-flex flex-column justify-content-center" data-aos="fade-in">
@@ -20,8 +30,11 @@
                             Informasi Kami
                         </a>
                         {{-- <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8"
-                            class="glightbox btn-watch-video d-flex align-items-center"><i
-                                class="bi bi-play-circle"></i><span>Watch Video</span></a> --}}
+                            class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i>
+                            <span>
+                                Sambutan
+                            </span>
+                        </a> --}}
                     </div>
                 </div>
 
@@ -46,68 +59,6 @@
         </svg>
 
     </section><!-- /Hero Section -->
-
-    <!-- About Section -->
-    <section id="about" class="about section">
-
-        <div class="container" data-aos="fade-up" data-aos-delay="100">
-            <div class="row align-items-xl-center gy-5">
-
-                <div class="col-xl-5 content">
-                    <h3>About Us</h3>
-                    <h2>Ducimus rerum libero reprehenderit cumque</h2>
-                    <p>Ipsa sint sit. Quis ducimus tempore dolores impedit et dolor cumque alias maxime. Enim
-                        reiciendis minus et rerum hic non. Dicta quas cum quia maiores iure. Quidem nulla qui
-                        assumenda incidunt voluptatem tempora deleniti soluta.</p>
-                    <a href="#" class="read-more"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
-                </div>
-
-                <div class="col-xl-7">
-                    <div class="row gy-4 icon-boxes">
-
-                        <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
-                            <div class="icon-box">
-                                <i class="bi bi-buildings"></i>
-                                <h3>Eius provident</h3>
-                                <p>Magni repellendus vel ullam hic officia accusantium ipsa dolor omnis dolor
-                                    voluptatem</p>
-                            </div>
-                        </div> <!-- End Icon Box -->
-
-                        <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
-                            <div class="icon-box">
-                                <i class="bi bi-clipboard-pulse"></i>
-                                <h3>Rerum aperiam</h3>
-                                <p>Autem saepe animi et aut aspernatur culpa facere. Rerum saepe rerum voluptates
-                                    quia</p>
-                            </div>
-                        </div> <!-- End Icon Box -->
-
-                        <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
-                            <div class="icon-box">
-                                <i class="bi bi-command"></i>
-                                <h3>Veniam omnis</h3>
-                                <p>Omnis perferendis molestias culpa sed. Recusandae quas possimus. Quod consequatur
-                                    corrupti</p>
-                            </div>
-                        </div> <!-- End Icon Box -->
-
-                        <div class="col-md-6" data-aos="fade-up" data-aos-delay="500">
-                            <div class="icon-box">
-                                <i class="bi bi-graph-up-arrow"></i>
-                                <h3>Delares sapiente</h3>
-                                <p>Sint et dolor voluptas minus possimus nostrum. Reiciendis commodi eligendi omnis
-                                    quideme lorenda</p>
-                            </div>
-                        </div> <!-- End Icon Box -->
-
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-    </section><!-- /About Section -->
 
     <!-- Features Section -->
     <section id="features" class="features section">
@@ -258,95 +209,96 @@
     <!-- Details Section -->
     <section id="details" class="details section">
 
-        <!-- Section Title -->
-        <div class="container section-title" data-aos="fade-up">
-            <h2>Details</h2>
-            <div><span>Check Our</span> <span class="description-title">Details</span></div>
-        </div><!-- End Section Title -->
 
         <div class="container">
 
             <div class="row gy-4 align-items-center features-item">
-                <div class="col-md-5 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="100">
-                    <img src="assets/img/details-1.png" class="img-fluid" alt="">
-                </div>
-                <div class="col-md-7" data-aos="fade-up" data-aos-delay="100">
-                    <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
-                    <p class="fst-italic">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore
-                        magna aliqua.
-                    </p>
-                    <ul>
-                        <li><i class="bi bi-check"></i><span> Ullamco laboris nisi ut aliquip ex ea commodo
-                                consequat.</span></li>
-                        <li><i class="bi bi-check"></i> <span>Duis aute irure dolor in reprehenderit in voluptate
-                                velit.</span></li>
-                        <li><i class="bi bi-check"></i> <span>Ullam est qui quos consequatur eos accusamus.</span>
-                        </li>
-                    </ul>
-                </div>
-            </div><!-- Features Item -->
-
-            <div class="row gy-4 align-items-center features-item">
-                <div class="col-md-5 order-1 order-md-2 d-flex align-items-center" data-aos="zoom-out"
-                    data-aos-delay="200">
-                    <img src="assets/img/details-2.png" class="img-fluid" alt="">
-                </div>
-                <div class="col-md-7 order-2 order-md-1" data-aos="fade-up" data-aos-delay="200">
-                    <h3>Corporis temporibus maiores provident</h3>
-                    <p class="fst-italic">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore
-                        magna aliqua.
-                    </p>
-                    <p>
-                        Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate
-                        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        proident, sunt in
-                        culpa qui officia deserunt mollit anim id est laborum
-                    </p>
-                </div>
-            </div><!-- Features Item -->
-
-            <div class="row gy-4 align-items-center features-item">
                 <div class="col-md-5 d-flex align-items-center" data-aos="zoom-out">
-                    <img src="assets/img/details-3.png" class="img-fluid" alt="">
+                    <img src="{{ url('templates/bootslander') }}/img/details-3.png" class="img-fluid" alt="">
                 </div>
                 <div class="col-md-7" data-aos="fade-up">
-                    <h3>Sunt consequatur ad ut est nulla consectetur reiciendis animi voluptas</h3>
-                    <p>Cupiditate placeat cupiditate placeat est ipsam culpa. Delectus quia minima quod. Sunt saepe
-                        odit aut quia voluptatem hic voluptas dolor doloremque.</p>
+                    <div class="container section-title" data-aos="fade-up">
+                        <h2>Kategori</h2>
+                        <div><span>Pengumuman</span></div>
+                        <p>Berisi pengumuman resmi dari seluruh dinas pemerintahan Kabupaten Tapin yang dapat diakses oleh
+                            masyarakat secara terbuka.</p>
+                    </div>
+
+                    @php
+                        $posts = @$office
+                            ->posts()
+                            ->orderBy('id', 'DESC')
+                            ->whereHas('postCategories', function ($query) {
+                                return $query->where('name', 'Pengumuman');
+                            })
+                            ->limit(6)
+                            ->get();
+                    @endphp
                     <ul>
-                        <li><i class="bi bi-check"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo
-                                consequat.</span></li>
-                        <li><i class="bi bi-check"></i><span> Duis aute irure dolor in reprehenderit in voluptate
-                                velit.</span></li>
-                        <li><i class="bi bi-check"></i> <span>Facilis ut et voluptatem aperiam. Autem soluta ad
-                                fugiat</span>.</li>
+                        @forelse ($posts as $item)
+                            <li>
+                                <i class="bi bi-check"></i>
+                                <span>{{ $item->title }}</span>
+                            </li>
+                        @empty
+                            <li>
+                                <i class="bi bi-x text-danger"></i>
+                                <span>
+                                    Pengumuman Masih Kosong
+                                </span>
+                            </li>
+                        @endforelse
                     </ul>
                 </div>
             </div><!-- Features Item -->
 
             <div class="row gy-4 align-items-center features-item">
-                <div class="col-md-5 order-1 order-md-2 d-flex align-items-center" data-aos="zoom-out">
-                    <img src="assets/img/details-4.png" class="img-fluid" alt="">
-                </div>
-                <div class="col-md-7 order-2 order-md-1" data-aos="fade-up">
-                    <h3>Quas et necessitatibus eaque impedit ipsum animi consequatur incidunt in</h3>
-                    <p class="fst-italic">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore
-                        magna aliqua.
-                    </p>
-                    <p>
-                        Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate
-                        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        proident, sunt in
-                        culpa qui officia deserunt mollit anim id est laborum
-                    </p>
+
+                <div class="col-md-12 order-2 order-md-1" data-aos="fade-up">
+                    <div class="container section-title" data-aos="fade-up">
+                        <h2>Kategori</h2>
+                        <div><span>Berita</span></div>
+                        <p>Dapatkan berita terkini seputar kegiatan, program, dan kebijakan dari <b>{{ $office->name }}</b>.
+                        </p>
+                    </div>
+                    @php
+                        $berita = @$office
+                            ->posts()
+                            ->orderBy('id', 'DESC')
+                            ->whereHas('postCategories', function ($query) {
+                                return $query->where('name', 'Berita');
+                            })
+                            ->limit(4)
+                            ->get();
+                    @endphp
+                    <div class="row">
+                        @foreach ($berita as $item)
+                            @if ($loop->iteration == 1)
+                                <div class="col-md-12 mb-2">
+                                    <div class="row">
+                                        <div class="col-md-4 col-12">
+                                            <img src="{{ url('storage') . '/' . $item->thumb }}" class="img-fluid rounded"
+                                                alt="">
+                                        </div>
+                                        <div class="col-md-8 col-12">
+                                            <h4>{{ $item->title }}</h4>
+                                            {!! $item->excercept !!}
+                                        </div>
+                                    </div>
+                                </div>
+                            @else
+                                <div class="col-md-4 mb-2">
+                                    <img src="{{ url('storage') . '/' . $item->thumb }}" class="img-fluid rounded"
+                                        alt="">
+                                    <h4>{{ $item->title }}</h4>
+                                    <div class="text-dark">
+                                        {{ dateFormat($item->created_at) }}
+                                    </div>
+                                    {!! $item->excercept !!}
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
                 </div>
             </div><!-- Features Item -->
 
@@ -371,7 +323,8 @@
                     <div class="gallery-item">
                         <a href="{{ url('templates/bootslander') }}/img/gallery/gallery-1.jpg" class="glightbox"
                             data-gallery="images-gallery">
-                            <img src="assets/img/gallery/gallery-1.jpg" alt="" class="img-fluid">
+                            <img src="{{ url('templates/bootslander') }}/img/gallery/gallery-1.jpg" alt=""
+                                class="img-fluid">
                         </a>
                     </div>
                 </div><!-- End Gallery Item -->
@@ -380,7 +333,8 @@
                     <div class="gallery-item">
                         <a href="{{ url('templates/bootslander') }}/img/gallery/gallery-2.jpg" class="glightbox"
                             data-gallery="images-gallery">
-                            <img src="assets/img/gallery/gallery-2.jpg" alt="" class="img-fluid">
+                            <img src="{{ url('templates/bootslander') }}/img/gallery/gallery-2.jpg" alt=""
+                                class="img-fluid">
                         </a>
                     </div>
                 </div><!-- End Gallery Item -->
@@ -389,7 +343,8 @@
                     <div class="gallery-item">
                         <a href="{{ url('templates/bootslander') }}/img/gallery/gallery-3.jpg" class="glightbox"
                             data-gallery="images-gallery">
-                            <img src="assets/img/gallery/gallery-3.jpg" alt="" class="img-fluid">
+                            <img src="{{ url('templates/bootslander') }}/img/gallery/gallery-3.jpg" alt=""
+                                class="img-fluid">
                         </a>
                     </div>
                 </div><!-- End Gallery Item -->
@@ -398,7 +353,8 @@
                     <div class="gallery-item">
                         <a href="{{ url('templates/bootslander') }}/img/gallery/gallery-4.jpg" class="glightbox"
                             data-gallery="images-gallery">
-                            <img src="assets/img/gallery/gallery-4.jpg" alt="" class="img-fluid">
+                            <img src="{{ url('templates/bootslander') }}/img/gallery/gallery-4.jpg" alt=""
+                                class="img-fluid">
                         </a>
                     </div>
                 </div><!-- End Gallery Item -->
@@ -407,7 +363,8 @@
                     <div class="gallery-item">
                         <a href="{{ url('templates/bootslander') }}/img/gallery/gallery-5.jpg" class="glightbox"
                             data-gallery="images-gallery">
-                            <img src="assets/img/gallery/gallery-5.jpg" alt="" class="img-fluid">
+                            <img src="{{ url('templates/bootslander') }}/img/gallery/gallery-5.jpg" alt=""
+                                class="img-fluid">
                         </a>
                     </div>
                 </div><!-- End Gallery Item -->
@@ -416,7 +373,8 @@
                     <div class="gallery-item">
                         <a href="{{ url('templates/bootslander') }}/img/gallery/gallery-6.jpg" class="glightbox"
                             data-gallery="images-gallery">
-                            <img src="assets/img/gallery/gallery-6.jpg" alt="" class="img-fluid">
+                            <img src="{{ url('templates/bootslander') }}/img/gallery/gallery-6.jpg" alt=""
+                                class="img-fluid">
                         </a>
                     </div>
                 </div><!-- End Gallery Item -->
@@ -425,7 +383,8 @@
                     <div class="gallery-item">
                         <a href="{{ url('templates/bootslander') }}/img/gallery/gallery-7.jpg" class="glightbox"
                             data-gallery="images-gallery">
-                            <img src="assets/img/gallery/gallery-7.jpg" alt="" class="img-fluid">
+                            <img src="{{ url('templates/bootslander') }}/img/gallery/gallery-7.jpg" alt=""
+                                class="img-fluid">
                         </a>
                     </div>
                 </div><!-- End Gallery Item -->
@@ -434,7 +393,8 @@
                     <div class="gallery-item">
                         <a href="{{ url('templates/bootslander') }}/img/gallery/gallery-8.jpg" class="glightbox"
                             data-gallery="images-gallery">
-                            <img src="assets/img/gallery/gallery-8.jpg" alt="" class="img-fluid">
+                            <img src="{{ url('templates/bootslander') }}/img/gallery/gallery-8.jpg" alt=""
+                                class="img-fluid">
                         </a>
                     </div>
                 </div><!-- End Gallery Item -->
@@ -448,7 +408,7 @@
     <!-- Testimonials Section -->
     <section id="testimonials" class="testimonials section dark-background">
 
-        <img src="assets/img/testimonials-bg.jpg" class="testimonials-bg" alt="">
+        <img src="{{ url('templates/bootslander') }}/img/testimonials-bg.jpg" class="testimonials-bg" alt="">
 
         <div class="container" data-aos="fade-up" data-aos-delay="100">
 
@@ -472,7 +432,8 @@
 
                     <div class="swiper-slide">
                         <div class="testimonial-item">
-                            <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
+                            <img src="{{ url('templates/bootslander') }}/img/testimonials/testimonials-1.jpg"
+                                class="testimonial-img" alt="">
                             <h3>Saul Goodman</h3>
                             <h4>Ceo &amp; Founder</h4>
                             <div class="stars">
@@ -492,7 +453,8 @@
 
                     <div class="swiper-slide">
                         <div class="testimonial-item">
-                            <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
+                            <img src="{{ url('templates/bootslander') }}/img/testimonials/testimonials-2.jpg"
+                                class="testimonial-img" alt="">
                             <h3>Sara Wilsson</h3>
                             <h4>Designer</h4>
                             <div class="stars">
@@ -512,7 +474,8 @@
 
                     <div class="swiper-slide">
                         <div class="testimonial-item">
-                            <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
+                            <img src="{{ url('templates/bootslander') }}/img/testimonials/testimonials-3.jpg"
+                                class="testimonial-img" alt="">
                             <h3>Jena Karlis</h3>
                             <h4>Store Owner</h4>
                             <div class="stars">
@@ -532,7 +495,8 @@
 
                     <div class="swiper-slide">
                         <div class="testimonial-item">
-                            <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
+                            <img src="{{ url('templates/bootslander') }}/img/testimonials/testimonials-4.jpg"
+                                class="testimonial-img" alt="">
                             <h3>Matt Brandon</h3>
                             <h4>Freelancer</h4>
                             <div class="stars">
@@ -552,7 +516,8 @@
 
                     <div class="swiper-slide">
                         <div class="testimonial-item">
-                            <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
+                            <img src="{{ url('templates/bootslander') }}/img/testimonials/testimonials-5.jpg"
+                                class="testimonial-img" alt="">
                             <h3>John Larson</h3>
                             <h4>Entrepreneur</h4>
                             <div class="stars">
@@ -593,7 +558,8 @@
 
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
                     <div class="member">
-                        <div class="pic"><img src="assets/img/team/team-1.jpg" class="img-fluid" alt="">
+                        <div class="pic"><img src="{{ url('templates/bootslander') }}/img/team/team-1.jpg"
+                                class="img-fluid" alt="">
                         </div>
                         <div class="member-info">
                             <h4>Walter White</h4>
@@ -610,7 +576,8 @@
 
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
                     <div class="member">
-                        <div class="pic"><img src="assets/img/team/team-2.jpg" class="img-fluid" alt="">
+                        <div class="pic"><img src="{{ url('templates/bootslander') }}/img/team/team-2.jpg"
+                                class="img-fluid" alt="">
                         </div>
                         <div class="member-info">
                             <h4>Sarah Jhonson</h4>
@@ -627,7 +594,8 @@
 
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
                     <div class="member">
-                        <div class="pic"><img src="assets/img/team/team-3.jpg" class="img-fluid" alt="">
+                        <div class="pic"><img src="{{ url('templates/bootslander') }}/img/team/team-3.jpg"
+                                class="img-fluid" alt="">
                         </div>
                         <div class="member-info">
                             <h4>William Anderson</h4>
@@ -796,8 +764,8 @@
                 </div>
 
                 <div class="col-lg-5 order-1 order-lg-2">
-                    <img src="assets/img/faq.jpg" class="img-fluid" alt="" data-aos="zoom-in"
-                        data-aos-delay="100">
+                    <img src="{{ url('templates/bootslander') }}/img/faq.jpg" class="img-fluid" alt=""
+                        data-aos="zoom-in" data-aos-delay="100">
                 </div>
             </div>
 
