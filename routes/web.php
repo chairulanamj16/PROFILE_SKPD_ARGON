@@ -9,8 +9,11 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\backend\v1\GaleriController;
 use App\Http\Controllers\Backend\V1\PostController;
+use App\Http\Controllers\backend\v1\PpidController;
+use App\Http\Controllers\backend\v1\PublikasiController;
 use App\Http\Controllers\backend\v1\SliderController;
 use App\Http\Controllers\Backend\V1\SubdomainController;
+use App\Http\Controllers\backend\v1\VideoController;
 use App\Http\Controllers\Frontend\BerandaController;
 use App\Models\V1\Slider;
 
@@ -48,6 +51,15 @@ Route::middleware(['auth'])->group(function () {
         });
         Route::prefix('slider')->group(function () {
             Route::get('/', [SliderController::class, 'index'])->name('slider.index')->middleware('permission:view_slider');
+        });
+        Route::prefix('video')->group(function () {
+            Route::get('/', [VideoController::class, 'index'])->name('video.index')->middleware('permission:view_video');
+        });
+        Route::prefix('publikasi')->group(function () {
+            Route::get('/', [PublikasiController::class, 'index'])->name('publikasi.index')->middleware('permission:view_publikasi');
+        });
+        Route::prefix('ppid')->group(function () {
+            Route::get('/', [PpidController::class, 'index'])->name('ppid.index')->middleware('permission:view_ppid');
         });
     });
 
