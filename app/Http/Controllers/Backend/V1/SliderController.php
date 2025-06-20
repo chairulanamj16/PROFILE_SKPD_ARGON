@@ -14,8 +14,9 @@ class SliderController extends Controller
         $this->versi = 'v1';
     }
 
-    public function index(Request $request)
+    public function index(Request $request, $account)
     {
-        return view('backend.' . $this->versi . '.' . request()->segment(1) . '.index');
+        $data['account'] = $account;
+        return view('backend.' . $this->versi . '.' . request()->segment(1) . '.index', $data);
     }
 }
