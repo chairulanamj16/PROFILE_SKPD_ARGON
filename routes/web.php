@@ -11,6 +11,7 @@ use App\Http\Controllers\backend\v1\GaleriController;
 use App\Http\Controllers\Backend\V1\PostController;
 use App\Http\Controllers\backend\v1\SliderController;
 use App\Http\Controllers\Backend\V1\SubdomainController;
+use App\Http\Controllers\Frontend\BerandaController;
 use App\Models\V1\Slider;
 
 // Route untuk autentikasi
@@ -23,9 +24,10 @@ Route::middleware('guest')->group(function () {
     Route::post('forgot-password', [AuthController::class, 'forgotPassword']);
 });
 
-Route::get('/', function () {
-    return view('auth.login');
-})->middleware('guest');
+Route::group(['domain' => '{account}.' . env('APP_URL')], function () {
+    Route::get('/', [BerandaController::class, 'index'])->name('beranda.index');
+    // 
+});
 
 // Route::get('/', function () {
 //     return view('layouts.app2');
