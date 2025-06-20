@@ -21,9 +21,9 @@ class Create extends Component
     public $account;
 
     protected $rules = [
-        'thumbnail' => 'required|image|max:2048',
+        'thumbnail' => 'required|image|mimes:png,jpg,jpeg,webp|max:5048',
         'title' => 'required|string|max:255',
-        'artikel' => 'required|string',
+        'artikel' => 'required',
     ];
 
     public function mount($account)
@@ -41,7 +41,7 @@ class Create extends Component
     {
         $this->validate();
 
-        $filename = $this->thumbnail->store('thumbnails', 'public');
+        $filename = $this->thumbnail->store('assets/' . $this->account . '/post/thumb', 'public');
 
         $post = Post::create([
             'office_id' => 1,

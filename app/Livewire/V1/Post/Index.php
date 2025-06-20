@@ -2,6 +2,7 @@
 
 namespace App\Livewire\V1\Post;
 
+use App\Models\V1\Office;
 use App\Models\V1\Post;
 use Illuminate\Support\Facades\File;
 use Livewire\Component;
@@ -21,7 +22,10 @@ class Index extends Component
 
     public function render()
     {
-        $data['posts'] = Post::search($this->search)->orderBy($this->sortField, $this->sortDirection)->paginate($this->page_count);
+        $office = Office::where('subdomain', $this->account)->first();
+        $data['posts'] = Post::search($this->search)
+            ->where('office_id', $office->id)
+            ->orderBy($this->sortField, $this->sortDirection)->paginate($this->page_count);
         // $data['posts'] = Post::paginate($this->page_count);
         return view('livewire.v1.post.index', $data);
     }
