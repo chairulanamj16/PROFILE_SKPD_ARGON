@@ -36,7 +36,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/', [SubdomainController::class, 'index'])->name('subdomain')->middleware('permission:view_subdomain');
     });
 
-    Route::group(['domain' => '{account}.anam.local'], function () {
+    Route::group(['domain' => '{account}.' . env('APP_URL')], function () {
         Route::prefix('post')->group(function () {
             Route::get('/', [PostController::class, 'index'])->name('post.index')->middleware('permission:view_post');
             Route::get('/create', [PostController::class, 'create'])->name('post.create')->middleware('permission:create_post');
