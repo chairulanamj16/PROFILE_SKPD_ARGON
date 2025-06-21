@@ -20,6 +20,7 @@ class Index extends Component
 
     public $nama;
     public $subdomain;
+    public $email;
     public $editSubdomain;
 
 
@@ -72,6 +73,7 @@ class Index extends Component
         $this->validate([
             'nama' => 'required',
             'subdomain' => 'required|string|regex:/\w+$/|unique:offices',
+            'email' => 'required|string|unique:users,email',
         ], [
             'nama.required' => 'Nama harus diisi',
             'subdomain.required' => 'Subdomain harus diisi',
@@ -81,17 +83,18 @@ class Index extends Component
         $data_user = [
             'name' => $this->nama,
             'username' => $this->subdomain,
+            'email' => $this->email,
             'password' => Hash::make('tapinkab'),
             'rule' => 'Admin'
         ];
 
+
+        $user = User::create($data_user);
         $data_subdomain = [
-            'user_id' => Auth::user()->id,
+            'user_id' => $user->id,
             'name' => $this->nama,
             'subdomain' => $this->subdomain
         ];
-
-        User::create($data_user);
         Office::create($data_subdomain);
 
         $this->dispatch('subdomainStore');
