@@ -1,7 +1,7 @@
    <header id="header" class="header d-flex align-items-center fixed-top">
        <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
-           <a href="index.html" class="logo d-flex align-items-center">
+           <a href="{{ url('/') }}" class="logo d-flex align-items-center">
                <!-- Uncomment the line below if you also wish to use an image logo -->
                @if ($office->logo)
                    <img src="{{ url('storage') . '/' . $office->logo }}" class="img-fluid" alt="{{ $office->subdomain }}">
@@ -15,7 +15,7 @@
 
            <nav id="navmenu" class="navmenu">
                <ul>
-                   <li><a href="#hero" class="active">Beranda</a></li>
+                   <li><a href="{{ url('/') }}" class="active">Beranda</a></li>
                    <li><a href="#PPID">PPID</a></li>
                    <li class="dropdown">
                        <a href="#"><span>Profil</span>

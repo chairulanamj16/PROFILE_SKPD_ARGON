@@ -16,6 +16,7 @@ use App\Http\Controllers\backend\v1\SliderController;
 use App\Http\Controllers\Backend\V1\SubdomainController;
 use App\Http\Controllers\backend\v1\VideoController;
 use App\Http\Controllers\Frontend\BerandaController;
+use App\Http\Controllers\Frontend\PostController as FrontendPostController;
 use App\Models\V1\Slider;
 
 // Route untuk autentikasi
@@ -30,6 +31,7 @@ Route::middleware('guest')->group(function () {
 
 Route::group(['domain' => '{account}.' . env('APP_URL')], function () {
     Route::get('/', [BerandaController::class, 'index'])->name('beranda.index');
+    Route::get('/{post:uuid}', [FrontendPostController::class, 'show'])->name('f.post.show');
     // 
 });
 
