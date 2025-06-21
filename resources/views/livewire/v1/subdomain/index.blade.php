@@ -14,7 +14,7 @@
                     <th wire:click="sortBy('subdomain')" style="cursor: pointer">
                         Subdomain
                     </th>
-
+                    <th>Email</th>
                     <th>Tautan</th>
                     <th>Aksi</th>
                 </tr>
@@ -25,7 +25,9 @@
                         <td></td>
                         <td class="{{ $nama != '' ? 'bg-success' : '' }}">
 
-                            <input wire:model.live='nama' type="text" class="form-control form-control-table" @error('nama') is-invalid @enderror">
+                            <input wire:model.live='nama' type="text" placeholder="Nama Instansi"
+                                class="form-control form-control-table
+                            @error('nama') is-invalid @enderror">
 
                             @error('nama')
                                 <span class="text-danger">{{ $message }}</span>
@@ -33,9 +35,21 @@
                         </td>
                         <td class="{{ $subdomain != '' ? 'bg-success' : '' }}">
 
-                            <input wire:model.live='subdomain' type="text" class="form-control form-control-table" @error('subdomain') is-invalid @enderror">
+                            <input wire:model.live='subdomain' type="text" placeholder="Subdomain Instansi"
+                                class="form-control form-control-table
+                                @error('subdomain') is-invalid @enderror">
 
                             @error('subdomain')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </td>
+                        <td class="{{ $email != '' ? 'bg-success' : '' }}">
+
+                            <input wire:model.live='email' type="text" placeholder="Email Instansi"
+                                class="form-control form-control-table
+                                @error('email') is-invalid @enderror">
+
+                            @error('email')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </td>
@@ -43,7 +57,7 @@
                             https://{{ $subdomain . '.profile.' . env('APP_URL') }}
                         </td>
                         <td class="text-center">
-                            <button wire:click="store" class="btn btn-primary btn-xs">
+                            <button wire:click="store" class="btn btn-primary btn-xs m-0">
                                 <i class="fas fa-save fa-fw"></i>
                             </button>
                         </td>
@@ -57,8 +71,8 @@
                                 @if ($editFieldRowId == $subdomain->id . '-name')
                                     <div class="input-group">
                                         <input wire:blur="ubah('{{ $subdomain->id }}', 'name', $event.target.value)"
-                                            wire:keydown.enter="ubah('{{ $subdomain->id }}', 'name', $event.target.value)" class="form-control form-control-table"
-                                            value="{{ $subdomain->name }}" />
+                                            wire:keydown.enter="ubah('{{ $subdomain->id }}', 'name', $event.target.value)"
+                                            class="form-control form-control-table" value="{{ $subdomain->name }}" />
                                     </div>
                                 @else
                                     <span wire:click="editRow('{{ $subdomain->id . '-name' }}')">
@@ -74,8 +88,8 @@
                                 @if ($editFieldRowId == $subdomain->id . '-subdomain')
                                     <div class="input-group">
                                         <input wire:blur="ubah('{{ $subdomain->id }}', 'subdomain', $event.target.value)"
-                                            wire:keydown.enter="ubah('{{ $subdomain->id }}', 'subdomain', $event.target.value)" class="form-control form-control-table"
-                                            value="{{ $subdomain->subdomain }}" />
+                                            wire:keydown.enter="ubah('{{ $subdomain->id }}', 'subdomain', $event.target.value)"
+                                            class="form-control form-control-table" value="{{ $subdomain->subdomain }}" />
                                     </div>
                                 @else
                                     <span wire:click="editRow('{{ $subdomain->id . '-subdomain' }}')">
@@ -85,7 +99,9 @@
                             @else
                                 {{ $subdomain->subdomain }}
                             @endcan
-
+                        </td>
+                        <td>
+                            {{ $subdomain->user->email }}
                         </td>
                         <td>
                             <a href="https://{{ $subdomain->subdomain . '.profile.' . env('APP_URL') }}"
@@ -93,11 +109,13 @@
                         </td>
                         <td class="text-center">
                             @can('delete_subdomain')
-                                <button class="btn btn-danger btn-xs m-0" data-bs-toggle="modal" data-bs-target="#modelIdDelete{{ $loop->iteration }}">
+                                <button class="btn btn-danger btn-xs m-0" data-bs-toggle="modal"
+                                    data-bs-target="#modelIdDelete{{ $loop->iteration }}">
                                     <i class="fas fa-trash fa-fw"></i>
                                 </button>
                                 <!-- Modal -->
-                                <div class="modal fade" id="modelIdDelete{{ $loop->iteration }}" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                                <div class="modal fade" id="modelIdDelete{{ $loop->iteration }}" tabindex="-1"
+                                    role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-body">
