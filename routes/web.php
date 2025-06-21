@@ -31,7 +31,7 @@ Route::middleware('guest')->group(function () {
 
 Route::group(['domain' => '{account}.' . env('APP_URL')], function () {
     Route::get('/', [BerandaController::class, 'index'])->name('beranda.index');
-    Route::get('/{post:uuid}', [FrontendPostController::class, 'show'])->name('f.post.show');
+    Route::get('/informasi/{post:uuid}/show', [FrontendPostController::class, 'show'])->name('f.post.show');
     // 
 });
 
