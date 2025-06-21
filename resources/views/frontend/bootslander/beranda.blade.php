@@ -1,4 +1,5 @@
 @extends('frontend.bootslander.template.index')
+@section('title', 'Beranda')
 
 @section('content')
     <!-- Hero Section -->
