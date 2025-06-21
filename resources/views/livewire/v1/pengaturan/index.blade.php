@@ -48,7 +48,58 @@
                 <div class="card-header pb-0">
                     <div class="d-flex align-items-center">
                         <p class="mb-0">Edit Profile</p>
-                        <button class="btn btn-primary btn-sm ms-auto">Settings</button>
+                        <button class="btn btn-primary btn-sm ms-auto" data-bs-toggle="modal"
+                            data-bs-target="#modelIdGantiPassword">
+                            Ganti Password
+                        </button>
+                        <div wire:ignore.self class="modal fade" id="modelIdGantiPassword" tabindex="-1" role="dialog"
+                            aria-labelledby="modelTitleId" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">
+                                            Ganti Password
+                                        </h5>
+                                    </div>
+                                    <div class="modal-body">
+                                        @if (session()->has('success'))
+                                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                {{ session('success') }}
+                                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                        @endif
+
+                                        <div class="form-group">
+                                            <label for="">Password Lama</label>
+                                            <input type="text" wire:model.live='password_lama' class="form-control">
+                                            @error('password_lama')
+                                                <small class="text-danger">
+                                                    {{ $message }}
+                                                </small>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="">Password Baru</label>
+                                            <input type="text" wire:model.live='password_baru' class="form-control">
+                                            @error('password_baru')
+                                                <small class="text-danger">
+                                                    {{ $message }}
+                                                </small>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                            Tutup
+                                        </button>
+                                        <button type="button" class="btn btn-primary" wire:click='ganti_password'>
+                                            Simpan
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="card-body">
@@ -138,7 +189,8 @@
                         <div class="col-md-2">
                             <div class="text-center">
                                 @if ($office->logo)
-                                    <img src="{{ url('storage/' . $office->logo) }}" class="img-fluid" alt="">
+                                    <img src="{{ url('storage/' . $office->logo) }}" class="img-fluid"
+                                        alt="">
                                 @endif
                             </div>
                         </div>
