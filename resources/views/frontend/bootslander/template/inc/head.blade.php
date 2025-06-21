@@ -6,8 +6,14 @@
     <meta name="keywords" content="">
 
     <!-- Favicons -->
-    <link href="{{ url('templates/bootslander') }}/img/favicon.png" rel="icon">
-    <link href="{{ url('templates/bootslander') }}/img/apple-touch-icon.png" rel="apple-touch-icon">
+    {{-- <link href="{{ url('templates/bootslander') }}/img/favicon.png" rel="icon"> --}}
+    @if ($office->logo)
+        <link href="{{ url('storage') . '/' . $office->logo }}" rel="icon">
+        <link href="{{ url('storage') . '/' . $office->logo }}" rel="apple-touch-icon">
+    @else
+        <link href="{{ url('') }}/assets/logo.png" alt="Kabupaten Tapin" rel="icon">
+        <link href="{{ url('') }}/assets/logo.png" rel="apple-touch-icon">
+    @endif
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect">
