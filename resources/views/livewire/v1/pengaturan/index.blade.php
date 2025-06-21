@@ -75,22 +75,18 @@
                                 <label for="example-text-input" class="form-control-label">Gambar Pimpinan</label>
                                 <br>
                                 <div class="input-group">
-                                    {{-- <input class="form-control" type="file" wire:model='image'> --}}
                                     <input type="file"
                                         class="form-control @error('leaderImage') is-invalid @enderror {{ $leaderImage ? 'is-valid' : '' }}"
                                         wire:model='leaderImage'>
                                     <button class="btn btn-primary btn-xs m-0"
                                         wire:click="ubah('{{ $office->id }}', 'leader_image', $event.target.value)">
-
-                                        <i class="fas fa-save fa-fw"></i>
+                                        Simpan
                                     </button>
                                 </div>
                                 @error('leaderImage')
                                     <span>{{ $message }}</span>
                                 @enderror
-                                <span wire:loading wire:target="leaderImage" class="text-xs">
-                                    Mengunggah gambar...
-                                </span>
+
 
                             </div>
                         </div>
@@ -102,47 +98,114 @@
                         </div>
                     </div>
                     <hr class="horizontal dark">
-                    <p class="text-uppercase text-sm">Contact Information</p>
+                    <p class="text-uppercase text-sm">Informasi Kontak</p>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="example-text-input" class="form-control-label">Address</label>
-                                <input class="form-control" type="text"
-                                    value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09" onfocus="focused(this)"
-                                    onfocusout="defocused(this)">
+                                <label for="example-text-input" class="form-control-label">Alamat Kantor</label>
+                                <textarea class="form-control" type="text" wire:model.live='address'
+                                    wire:focusout="ubah('{{ $office->id }}', 'address', $event.target.value)"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="example-text-input" class="form-control-label">Telpon Kantor</label>
+                                <input class="form-control" type="tel" wire:model.live='phone'
+                                    wire:focusout="ubah('{{ $office->id }}', 'phone', $event.target.value)">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="example-text-input" class="form-control-label">Email Kantor</label>
+                                <input class="form-control" type="email" wire:model.live='email'
+                                    wire:focusout="ubah('{{ $office->id }}', 'email', $event.target.value)">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="example-text-input" class="form-control-label">City</label>
-                                <input class="form-control" type="text" value="New York" onfocus="focused(this)"
-                                    onfocusout="defocused(this)">
+                                <label for="example-text-input" class="form-control-label">Logo Kantor</label>
+                                <div class="input-group">
+                                    <input
+                                        class="form-control  @error('logo') is-invalid @enderror {{ $logo ? 'is-valid' : '' }}"
+                                        type="file" wire:model.live='logo'>
+                                    <button class="btn btn-dark btn-xs m-0"
+                                        wire:click="ubah('{{ $office->id }}', 'logo', $event.target.value)">
+                                        Simpan
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="example-text-input" class="form-control-label">Country</label>
-                                <input class="form-control" type="text" value="United States" onfocus="focused(this)"
-                                    onfocusout="defocused(this)">
+                        <div class="col-md-2">
+                            <div class="text-center">
+                                @if ($office->logo)
+                                    <img src="{{ url('storage/' . $office->logo) }}" class="img-fluid" alt="">
+                                @endif
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-12">
                             <div class="form-group">
-                                <label for="example-text-input" class="form-control-label">Postal code</label>
-                                <input class="form-control" type="text" value="437300" onfocus="focused(this)"
-                                    onfocusout="defocused(this)">
+                                <label for="example-text-input" class="form-control-label">Maps</label>
+                                <div class="input-group">
+                                    <textarea class="form-control" wire:model.live='map'
+                                        wire:focusout="ubah('{{ $office->id }}', 'map', $event.target.value)" rows="5"></textarea>
+                                    <button class="btn btn-primary btn-xs m-0" data-bs-toggle="modal"
+                                        data-bs-target="#modelIdMap">
+                                        <i class="fas fa-info fa-fw"></i>
+                                    </button>
+                                </div>
+                                <div class="modal fade" id="modelIdMap" tabindex="-1" role="dialog"
+                                    aria-labelledby="modelTitleId" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-body">
+                                                <ol>
+                                                    <li>
+                                                        <strong>Klik Tombol Bagikan</strong>
+                                                        <img src="{{ url('assets/tutorial/map-share.PNG') }}"
+                                                            class="img-fluid" alt="">
+                                                    </li>
+                                                    <li class="mt-4">
+                                                        <strong>Pilih <u>Sematkan Peta</u>, Lalu <u>Salin HTML
+                                                                iframe</u></strong>
+                                                        <img src="{{ url('assets/tutorial/map-link.PNG') }}"
+                                                            class="img-fluid" alt="">
+                                                    </li>
+                                                    <li class="mt-4">
+                                                        <strong>Paste Link HTML ke Inputan, Seperti gambar di bawah
+                                                            ini:</strong>
+                                                        <img src="{{ url('assets/tutorial/map-paste.PNG') }}"
+                                                            class="img-fluid" alt="">
+                                                    </li>
+                                                </ol>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <hr class="horizontal dark">
-                    <p class="text-uppercase text-sm">About me</p>
+                    <p class="text-uppercase text-sm">Sosial Media</p>
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-4">
                             <div class="form-group">
-                                <label for="example-text-input" class="form-control-label">About me</label>
-                                <input class="form-control" type="text"
-                                    value="A beautiful Dashboard for Bootstrap 5. It is Free and Open Source."
-                                    onfocus="focused(this)" onfocusout="defocused(this)">
+                                <label for="example-text-input" class="form-control-label">Facebook</label>
+                                <input class="form-control" type="text" wire:model.live='facebook'
+                                    wire:focusout="ubah('{{ $office->id }}', 'facebook', $event.target.value)">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="example-text-input" class="form-control-label">Instagram</label>
+                                <input class="form-control" type="text" wire:model.live='instagram'
+                                    wire:focusout="ubah('{{ $office->id }}', 'instagram', $event.target.value)">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="example-text-input" class="form-control-label">Youtube</label>
+                                <input class="form-control" type="text" wire:model.live='youtube'
+                                    wire:focusout="ubah('{{ $office->id }}', 'youtube', $event.target.value)">
                             </div>
                         </div>
                     </div>
@@ -153,98 +216,31 @@
             <div class="card card-profile">
                 <img src="../assets/img/bg-profile.jpg" alt="Image placeholder" class="card-img-top">
                 <div class="row justify-content-center">
-                    <div class="col-4 col-lg-4 order-lg-2">
+                    <div class="col-4 col-lg-4 order-lg-2" style="position: relative">
                         <div class="mt-n4 mt-lg-n6 mb-4 mb-lg-0">
                             <a href="javascript:;">
                                 <img src="{{ url('storage') . '/' . $office->leader_image }}" class="img-fluid ">
+                                <div style="position: absolute;bottom:0px;padding:0px 10px;border-radius:50px;"
+                                    class="bg-primary text-white w-100 text-center">
+                                    <small>
+                                        <strong>
+                                            {{ $office->leader_name }}
+                                        </strong>
+                                    </small>
+                                    <small>
+                                        {{ $office->leader_position }}
+                                    </small>
+                                </div>
                             </a>
                         </div>
                     </div>
                 </div>
-                <div class="card-header text-center border-0 pt-0 pt-lg-2 pb-4 pb-lg-3">
-                    <div class="d-flex justify-content-between">
-                        <a href="javascript:;" class="btn btn-sm btn-info mb-0 d-none d-lg-block">Connect</a>
-                        <a href="javascript:;" class="btn btn-sm btn-info mb-0 d-block d-lg-none"><i
-                                class="ni ni-collection"></i></a>
-                        <a href="javascript:;"
-                            class="btn btn-sm btn-dark float-right mb-0 d-none d-lg-block">Message</a>
-                        <a href="javascript:;" class="btn btn-sm btn-dark float-right mb-0 d-block d-lg-none"><i
-                                class="ni ni-email-83"></i></a>
-                    </div>
-                </div>
+
                 <div class="card-body pt-0">
-                    <div class="row">
-                        <div class="col">
-                            <div class="d-flex justify-content-center">
-                                <div class="d-grid text-center">
-                                    <span class="text-lg font-weight-bolder">22</span>
-                                    <span class="text-sm opacity-8">Friends</span>
-                                </div>
-                                <div class="d-grid text-center mx-4">
-                                    <span class="text-lg font-weight-bolder">10</span>
-                                    <span class="text-sm opacity-8">Photos</span>
-                                </div>
-                                <div class="d-grid text-center">
-                                    <span class="text-lg font-weight-bolder">89</span>
-                                    <span class="text-sm opacity-8">Comments</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-center mt-4">
-                        <h5>
-                            Mark Davis<span class="font-weight-light">, 35</span>
-                        </h5>
-                        <div class="h6 font-weight-300">
-                            <i class="ni location_pin mr-2"></i>Bucharest, Romania
-                        </div>
-                        <div class="h6 mt-4">
-                            <i class="ni business_briefcase-24 mr-2"></i>Solution Manager - Creative Tim Officer
-                        </div>
-                        <div>
-                            <i class="ni education_hat mr-2"></i>University of Computer Science
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>
     </div>
-    <footer class="footer pt-3  ">
-        <div class="container-fluid">
-            <div class="row align-items-center justify-content-lg-between">
-                <div class="col-lg-6 mb-lg-0 mb-4">
-                    <div class="copyright text-center text-sm text-muted text-lg-start">
-                        ©
-                        <script>
-                            document.write(new Date().getFullYear())
-                        </script>2025,
-                        made with <i class="fa fa-heart"></i> by
-                        <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative
-                            Tim</a>
-                        for a better web.
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-                        <li class="nav-item">
-                            <a href="https://www.creative-tim.com" class="nav-link text-muted"
-                                target="_blank">Creative Tim</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted"
-                                target="_blank">About Us</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="https://www.creative-tim.com/blog" class="nav-link text-muted"
-                                target="_blank">Blog</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted"
-                                target="_blank">License</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
+
 </div>

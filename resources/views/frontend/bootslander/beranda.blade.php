@@ -165,12 +165,22 @@
                     <ul>
                         @forelse ($posts as $item)
                             <li>
-                                <i class="bi bi-check"></i>
-                                <span>{{ $item->title }}</span>
+                                <a href="{{ route('f.post.show', ['account' => $office->subdomain, 'post' => $item->uuid]) }}"
+                                    class="row mb-2">
+                                    <div class="col-md-2">
+                                        <img src="{{ url('storage') . '/' . $item->thumb }}" class="img-fluid rounded"
+                                            width="100%" alt="">
+                                    </div>
+                                    <div class="col-md-10 text-start text-dark">
+                                        <small>
+                                            <strong class="text-primary">{{ dateFormat($item->created_at) }}</strong> |
+                                        </small>
+                                        <span class="">{{ $item->title }}</span>
+                                    </div>
+                                </a>
                             </li>
                         @empty
                             <li>
-                                <i class="bi bi-x text-danger"></i>
                                 <span>
                                     Pengumuman Masih Kosong
                                 </span>
@@ -349,7 +359,9 @@
                 </div><!-- End Contact Form -->
 
             </div>
-            {!! $office->map !!}
+            <div class="mt-4">
+                {!! $office->map !!}
+            </div>
         </div>
 
     </section><!-- /Contact Section -->
