@@ -349,7 +349,9 @@
                 </div><!-- End Contact Form -->
 
             </div>
-            {!! $office->map !!}
+            <div class="mt-4">
+                {!! $office->map !!}
+            </div>
         </div>
 
     </section><!-- /Contact Section -->
