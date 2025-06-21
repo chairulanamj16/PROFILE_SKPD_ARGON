@@ -5,7 +5,7 @@
         <div class="card shadow">
             <div class="card-body">
                 <div class="card-text">
-                    @livewire('v1.' . request()->segment(1) . '.index')
+                    @livewire('v1.' . request()->segment(1) . '.index', ['account' => $account])
                 </div>
             </div>
         </div>

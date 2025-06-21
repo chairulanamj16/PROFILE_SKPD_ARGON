@@ -4,13 +4,12 @@
           <div class="row gy-4">
               <div class="col-lg-4 col-md-6 footer-about">
                   <a href="index.html" class="logo d-flex align-items-center">
-                      <span class="sitename">Bootslander</span>
+                      <span class="sitename text-uppercase">{{ $office->subdomain }}</span>
                   </a>
                   <div class="footer-contact pt-3">
-                      <p>A108 Adam Street</p>
-                      <p>New York, NY 535022</p>
-                      <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-                      <p><strong>Email:</strong> <span>info@example.com</span></p>
+                      <p>{{ $office->address }}</p>
+                      <p class="mt-3"><strong>Phone:</strong> <span>{{ $office->phone }}</span></p>
+                      <p><strong>Email:</strong> <span>{{ $office->email }}</span></p>
                   </div>
                   <div class="social-links d-flex mt-4">
                       <a href=""><i class="bi bi-twitter-x"></i></a>
@@ -42,17 +41,6 @@
                   </ul>
               </div>
 
-              <div class="col-lg-4 col-md-12 footer-newsletter">
-                  <h4>Our Newsletter</h4>
-                  <p>Subscribe to our newsletter and receive the latest news about our products and services!</p>
-                  <form action="forms/newsletter.php" method="post" class="php-email-form">
-                      <div class="newsletter-form"><input type="email" name="email"><input type="submit"
-                              value="Subscribe"></div>
-                      <div class="loading">Loading</div>
-                      <div class="error-message"></div>
-                      <div class="sent-message">Your subscription request has been sent. Thank you!</div>
-                  </form>
-              </div>
 
           </div>
       </div>
