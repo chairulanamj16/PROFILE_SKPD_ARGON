@@ -89,7 +89,8 @@
                             <label for="">Kategori</label>
                             <select class="form-control" id="select2" wire:model.live='categories' multiple>
                                 @foreach ($kategori as $item)
-                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    <option {{ in_array($item->id, $categories) ? 'selected' : '' }}
+                                        value="{{ $item->id }}">{{ $item->name }}</option>
                                 @endforeach
                             </select>
                         </div>
